@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drunkard AI ($DRUNK)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Fredoka One', cursive;
+            background: linear-gradient(to bottom, #4b3621, #ffffff 70%);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background-color: #6b4226;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            font-size: 1.2em;
+            color: #ffd700;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            background-color: #4e3524;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #ffd700;
+            color: #4e3524;
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        .header {
+            margin: 40px 0;
+        }
+
+        .title {
+            font-size: 4em;
+            color: #ffd700;
+            text-shadow: 4px 4px 0px #000000;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #ffd700;
+        }
+
+        .drunkard-image {
+            max-width: 300px;
+            margin: 20px auto;
+            border: 5px solid #ffd700;
+            border-radius: 50%;
+        }
+
+        /* Description */
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 1.5em;
+            color: #ffffff;
+            background-color: #6b4226;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pour One Out Section */
+        .pour-one {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #4e3524;
+            border: 3px dashed #ffd700;
+        }
+
+        .pour-one h2 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 0px #000000;
+        }
+
+        .pour-one p {
+            font-size: 1.3em;
+            color: #ffffff;
+            margin: 10px 0;
+        }
+
+        .pour-one input {
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 10px 0;
+            width: 70%;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+        }
+
+        .pour-one button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #6b4226;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .pour-one button:hover {
+            background-color: #ffd700;
+            color: #6b4226;
+            transform: scale(1.1);
+        }
+
+        /* Bocadillo Style */
+        .bocadillo {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4e3524;
+            color: #ffd700;
+            padding: 20px;
+            font-size: 1.5em;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+            animation: fadeInOut 4s ease forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Voting Section */
+        .voting-section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #ffd700;
+            border: 3px solid #4e3524;
+            border-radius: 15px;
+        }
+
+        .voting-section h2 {
+            font-size: 2.5em;
+            color: #4e3524;
+        }
+
+        .vote-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4e3524;
+            padding: 15px;
+            margin: 15px auto;
+            width: 80%;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+
+        .vote-item a {
+            color: #4caf50; /* Green for URLs */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .vote-item a:hover {
+            text-decoration: underline;
+            color: #388e3c; /* Darker green on hover */
+        }
+
+        .vote-item button {
+            background-color: #ffd700;
+            color: #4e3524;
+            border: 2px solid #4e3524;
+            border-radius: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .vote-item button:hover {
+            background-color: #4e3524;
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #6b4226;
+            color: #ffd700;
+            padding: 20px 0;
+            font-size: 1em;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://x.com/DrunkardAI" target="_blank">Twitter</a>
+        <a href="https://t.me/DrunkardAITavern" target="_blank">Telegram</a>
+    </nav>
+
+    <header class="header">
+        <h1 class="title">$DRUNK</h1>
+        <p class="subtitle">“Crypto Served Straight from the Tap”</p>
+        <img class="drunkard-image" src="YOUR_IMAGE_URL" alt="Drunkard AI Logo">
+    </header>
+
+    <div class="description">
+        Drunkard AI pours wit and analytics into crypto projects. Submit a project, let the AI analyze it, and vote for Bar Keepers 💎 or Tossed Out 🔥.
+    </div>
+
+    <section class="pour-one">
+        <h2>Pour One Out for the AI</h2>
+        <p>Submit a project link to see if it’s a keeper or belongs in the gutter:</p>
+        <input type="text" id="project-link" placeholder="Submit a project link here...">
+        <button onclick="submitProject()">Pour It In</button>
+    </section>
+
+    <div id="bocadillo" class="bocadillo"></div>
+
+    <section class="voting-section">
+        <h2>Vote for the Next Bar Keeper 💎 or Tossed Out 🔥</h2>
+        <div id="voting-container"></div>
+    </section>
+
+    <footer>
+        © 2024 Drunkard AI | Powered by Memes and AI Brew.
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
